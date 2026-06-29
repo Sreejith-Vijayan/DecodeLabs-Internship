@@ -37,11 +37,8 @@ env.bak/
 venv.bak/
 
 # Project specific ignores (Security & Size principles)
-# Do not push raw data, models, or generated reports/images
-data/
+# Ignore large model files, but keep data, images, and reports as requested
 models/
-reports/
-images/
 notebooks/.ipynb_checkpoints/
 
 # IDEs

@@ -11,7 +11,7 @@ def main():
     print("Starting AI Classification Project Pipeline\n" + "="*40)
     
     # 1. Load Data
-    df = load_data()
+    df = load_data(data_dir='data')
     
     # 2. EDA
     perform_eda(df, images_dir='images')

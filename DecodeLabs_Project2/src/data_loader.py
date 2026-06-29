@@ -5,15 +5,21 @@ import matplotlib.pyplot as plt
 from sklearn.datasets import fetch_openml
 from typing import Tuple
 
-def load_data() -> pd.DataFrame:
+def load_data(data_dir: str = '../data') -> pd.DataFrame:
     """
-    Loads the Titanic dataset using fetch_openml.
+    Loads the Titanic dataset using fetch_openml and saves it locally.
     Returns:
         pd.DataFrame: The loaded dataset.
     """
     print("Loading Titanic dataset...")
     data = fetch_openml('titanic', version=1, as_frame=True, parser='auto')
     df = data.frame
+    
+    # Save to data directory
+    os.makedirs(data_dir, exist_ok=True)
+    df.to_csv(os.path.join(data_dir, 'titanic.csv'), index=False)
+    print(f"Data saved to {os.path.join(data_dir, 'titanic.csv')}")
+    
     # For titanic dataset, the target is 'survived'
     return df
 
@@ -66,5 +72,5 @@ def perform_eda(df: pd.DataFrame, images_dir: str = '../images') -> None:
         plt.close()
 
 if __name__ == "__main__":
-    df = load_data()
+    df = load_data(data_dir='../data')
     perform_eda(df, images_dir='../images')
